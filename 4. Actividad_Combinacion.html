@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Combinación de Correspondencia – Word 365 | SENA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sena-verde: #39a900;
+  --sena-naranja: #ff6b00;
+  --texto: #1a1a2e;
+  --texto-dim: #4a5568;
+  --texto-dimmer: #718096;
+  --bg: #f8fafc;
+  --borde: #e2e8f0;
+  --azul: #3b82f6;
+  --purpura: #8b5cf6;
+  --amarillo: #f59e0b;
+  --rojo: #ef4444;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family:'Inter', sans-serif;
+  color: var(--texto);
+  background: var(--bg);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+/* ══ TOPBAR ══ */
+.topbar {
+  position:sticky; top:0; z-index:100;
+  background:rgba(255,255,255,0.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--borde);
+  padding:12px 20px;
+  display:flex; align-items:center; justify-content:space-between;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+  flex-wrap:wrap; gap:10px;
+}
+.topbar-left { display:flex; align-items:center; gap:12px; }
+.sena-logo {
+  background:var(--sena-verde); color:#fff;
+  font-weight:900; font-size:15px;
+  padding:6px 13px; border-radius:8px; letter-spacing:1px;
+}
+.topbar-brand { font-family:'Syne',sans-serif; font-size:13px; font-weight:700; }
+.topbar-sub { font-size:11px; color:var(--texto-dimmer); margin-top:1px; }
+.topbar-nav { display:flex; gap:14px; flex-wrap:wrap; }
+.topbar-nav a {
+  text-decoration:none; font-size:12px; font-weight:600;
+  color:var(--texto-dimmer); transition:color .2s; white-space:nowrap;
+}
+.topbar-nav a:hover { color:var(--sena-verde); }
+
+/* ══ HERO ══ */
+.hero {
+  background:linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+  padding:60px 20px; text-align:center; position:relative; overflow:hidden;
+}
+.hero::before {
+  content:''; position:absolute;
+  width:450px; height:450px; background:var(--sena-verde);
+  border-radius:50%; top:-220px; left:-120px; opacity:0.1; filter:blur(70px);
+}
+.hero::after {
+  content:''; position:absolute;
+  width:350px; height:350px; background:var(--sena-naranja);
+  border-radius:50%; bottom:-180px; right:-80px; opacity:0.12; filter:blur(70px);
+}
+.hero-tag {
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(57,169,0,0.15); border:1px solid rgba(57,169,0,0.3);
+  color:#6ee66e; padding:7px 18px; border-radius:30px;
+  font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+  margin-bottom:20px; position:relative; z-index:1;
+}
+.hero h1 {
+  font-family:'Syne',sans-serif;
+  font-size:clamp(28px, 6vw, 56px); font-weight:800;
+  color:#fff; line-height:1.15; margin-bottom:14px;
+  position:relative; z-index:1;
+}
+.hero h1 span {
+  background:linear-gradient(135deg, var(--sena-verde), var(--sena-naranja));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.hero-desc {
+  font-size:clamp(14px, 2vw, 17px); color:rgba(255,255,255,0.72);
+  max-width:580px; margin:0 auto 32px; position:relative; z-index:1;
+}
+.hero-stats {
+  display:flex; justify-content:center; gap:24px; flex-wrap:wrap;
+  position:relative; z-index:1;
+}
+.hero-stat {
+  background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12);
+  border-radius:14px; padding:16px 24px; text-align:center;
+  min-width:100px;
+}
+.hero-stat .num {
+  font-family:'Syne',sans-serif; font-size:28px; font-weight:800;
+  color:var(--sena-verde); display:block;
+}
+.hero-stat .lbl { font-size:12px; color:rgba(255,255,255,0.6); }
+
+/* ══ LAYOUT ══ */
+.container { max-width:1080px; margin:0 auto; padding:48px 20px; }
+.container.tight { padding-top:0; }
+
+/* ══ SEC TAG ══ */
+.sec-tag {
+  display:inline-block; font-size:11px; font-weight:700;
+  letter-spacing:2px; text-transform:uppercase;
+  padding:6px 14px; border-radius:20px; margin-bottom:12px;
+}
+.sec-tag.verde { background:rgba(57,169,0,0.1); color:var(--sena-verde); }
+.sec-tag.naranja { background:rgba(255,107,0,0.1); color:var(--sena-naranja); }
+.sec-tag.azul { background:rgba(59,130,246,0.1); color:var(--azul); }
+.sec-tag.purpura { background:rgba(139,92,246,0.1); color:var(--purpura); }
+
+.sec-titulo {
+  font-family:'Syne',sans-serif;
+  font-size:clamp(24px, 4vw, 36px); font-weight:800; color:var(--texto); margin-bottom:8px;
+}
+.sec-desc { font-size:15px; color:var(--texto-dim); max-width:700px; line-height:1.7; }
+
+/* ══ INFO BOX ══ */
+.info-box {
+  background:rgba(59,130,246,0.06); border-left:4px solid var(--azul);
+  border-radius:12px; padding:18px 20px; margin:20px 0;
+}
+.info-box.warning { background:rgba(245,158,11,0.06); border-left-color:var(--amarillo); }
+.info-box.danger { background:rgba(239,68,68,0.06); border-left-color:var(--rojo); }
+.info-box.success { background:rgba(57,169,0,0.06); border-left-color:var(--sena-verde); }
+.info-box p { font-size:14px; line-height:1.7; margin:0; color:var(--texto); }
+.info-box strong { font-weight:700; }
+
+/* ══ ACCION BOX ══ */
+.accion-box {
+  background:linear-gradient(135deg, var(--sena-verde), #2d7a00);
+  border-radius:18px; padding:28px 32px; color:#fff; margin:28px 0;
+  position:relative; overflow:hidden;
+  box-shadow:0 8px 24px rgba(57,169,0,0.25);
+}
+.accion-box::before { content:'👉'; position:absolute; top:-16px; right:-16px; font-size:120px; opacity:0.08; }
+.accion-header { display:flex; align-items:center; gap:14px; margin-bottom:16px; position:relative; }
+.accion-icon { font-size:40px; line-height:1; }
+.accion-titulo { font-family:'Syne',sans-serif; font-size:clamp(20px,3vw,28px); font-weight:800; }
+.accion-body { font-size:15px; line-height:1.7; position:relative; font-weight:500; }
+
+/* ══ PAUSA BOX ══ */
+.pausa-box {
+  background:linear-gradient(135deg, var(--amarillo), #d97706);
+  border-radius:18px; padding:28px; color:#fff; margin:28px 0; text-align:center;
+  box-shadow:0 8px 24px rgba(245,158,11,0.25);
+}
+.pausa-box .icon { font-size:52px; margin-bottom:12px; display:block; animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
+.pausa-box h3 { font-family:'Syne',sans-serif; font-size:22px; font-weight:800; margin-bottom:8px; }
+.pausa-box p { font-size:14px; opacity:0.95; }
+
+/* ══ STEP CARD ══ */
+.step-card {
+  background:#fff; border:2px solid var(--borde);
+  border-radius:18px; padding:28px; margin-bottom:20px; position:relative;
+}
+.step-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:4px;
+  background:linear-gradient(90deg, var(--sena-verde), var(--sena-naranja));
+  border-radius:18px 18px 0 0;
+}
+.step-num {
+  display:inline-block; background:var(--sena-verde); color:#fff;
+  font-family:'Syne',sans-serif; font-size:13px; font-weight:800;
+  padding:6px 14px; border-radius:10px; margin-bottom:14px;
+}
+.step-titulo { font-family:'Syne',sans-serif; font-size:20px; font-weight:700; color:var(--texto); margin-bottom:10px; }
+.step-desc { font-size:14px; color:var(--texto-dim); line-height:1.7; margin-bottom:16px; }
+.step-list { padding-left:20px; margin:0; }
+.step-list li { font-size:14px; color:var(--texto-dim); margin-bottom:8px; line-height:1.6; }
+.step-list li strong { color:var(--texto); font-weight:700; }
+
+/* ══ TABLA DE DESTINATARIOS ══ */
+.tabla-wrap {
+  background:#fff; border:2px solid var(--borde); border-radius:18px;
+  overflow:hidden; margin:20px 0; box-shadow:0 4px 16px rgba(0,0,0,0.06);
+}
+.tabla-header {
+  background:linear-gradient(90deg, var(--sena-verde), #2d7a00);
+  padding:16px 20px; display:flex; align-items:center; gap:12px;
+}
+.tabla-header h3 {
+  font-family:'Syne',sans-serif; font-size:16px; font-weight:800; color:#fff;
+}
+.tabla-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+table {
+  width:100%; border-collapse:collapse; min-width:700px;
+}
+thead tr { background:var(--bg); }
+th {
+  padding:12px 14px; text-align:left; font-size:11px; font-weight:700;
+  color:var(--texto-dimmer); letter-spacing:1px; text-transform:uppercase;
+  border-bottom:2px solid var(--borde); white-space:nowrap;
+}
+td {
+  padding:12px 14px; font-size:13px; color:var(--texto-dim);
+  border-bottom:1px solid var(--borde); vertical-align:top;
+}
+tbody tr:last-child td { border-bottom:none; }
+tbody tr:nth-child(even) { background:rgba(57,169,0,0.03); }
+tbody tr:hover { background:rgba(57,169,0,0.07); }
+.campo-badge {
+  display:inline-block; background:rgba(57,169,0,0.1); color:var(--sena-verde);
+  font-size:11px; font-weight:700; padding:2px 8px; border-radius:6px;
+  font-family:monospace; white-space:nowrap;
+}
+
+/* ══ CARTA TEMPLATE ══ */
+.carta-wrap {
+  background:#fff; border:2px solid var(--borde); border-radius:18px;
+  overflow:hidden; margin:20px 0; box-shadow:0 4px 16px rgba(0,0,0,0.06);
+}
+.carta-header {
+  background:linear-gradient(90deg, var(--purpura), #6d28d9);
+  padding:14px 20px; display:flex; align-items:center; gap:10px;
+}
+.carta-header h3 { font-family:'Syne',sans-serif; font-size:15px; font-weight:800; color:#fff; }
+.carta-body {
+  padding:28px 32px; font-size:14px; line-height:1.9;
+  color:var(--texto-dim); font-family:'Georgia',serif;
+  border:1px dashed var(--borde); margin:20px; border-radius:10px;
+  background:#fffdf8;
+}
+.carta-body .carta-titulo {
+  font-family:'Syne',sans-serif; font-size:18px; font-weight:800;
+  color:var(--texto); text-align:center; margin-bottom:20px;
+  padding-bottom:14px; border-bottom:2px solid var(--borde);
+}
+.campo {
+  display:inline-block;
+  background:linear-gradient(135deg, rgba(139,92,246,0.15), rgba(139,92,246,0.08));
+  color:#5b21b6; border:1px solid rgba(139,92,246,0.3);
+  padding:1px 8px; border-radius:6px; font-family:monospace;
+  font-size:12px; font-weight:700; white-space:nowrap;
+}
+
+/* ══ CAMPOS LEGEND ══ */
+.campos-grid {
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:10px; margin:16px 0;
+}
+.campo-item {
+  background:var(--bg); border:1px solid var(--borde); border-radius:10px;
+  padding:12px 14px; display:flex; gap:10px; align-items:flex-start;
+}
+.campo-item .icon { font-size:18px; flex-shrink:0; }
+.campo-item .name { font-family:monospace; font-size:12px; font-weight:700; color:var(--purpura); display:block; margin-bottom:2px; }
+.campo-item .desc { font-size:11px; color:var(--texto-dimmer); line-height:1.4; }
+
+/* ══ PASOS NUMERADOS ══ */
+.pasos-lista { list-style:none; padding:0; margin:0; }
+.pasos-lista li {
+  display:flex; gap:14px; padding:14px 0;
+  border-bottom:1px solid var(--borde); align-items:flex-start;
+}
+.pasos-lista li:last-child { border-bottom:none; }
+.paso-num {
+  background:var(--sena-verde); color:#fff;
+  width:28px; height:28px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:800; font-size:13px; flex-shrink:0; margin-top:1px;
+}
+.paso-content strong { display:block; font-size:14px; color:var(--texto); margin-bottom:3px; }
+.paso-content span { font-size:13px; color:var(--texto-dim); line-height:1.5; }
+.paso-content code {
+  background:var(--bg); padding:2px 7px; border-radius:5px;
+  font-size:12px; color:var(--sena-verde); font-weight:700; border:1px solid var(--borde);
+}
+
+/* ══ VERIFICACION ══ */
+.verificacion-box {
+  background:linear-gradient(135deg, var(--azul), #1d4ed8);
+  border-radius:18px; padding:28px 32px; color:#fff; margin:28px 0;
+  box-shadow:0 8px 24px rgba(59,130,246,0.25);
+}
+.verificacion-box .icon { font-size:48px; margin-bottom:12px; display:block; }
+.verificacion-box h3 { font-family:'Syne',sans-serif; font-size:22px; font-weight:800; margin-bottom:14px; }
+.verif-item {
+  background:rgba(255,255,255,0.12); border-radius:10px;
+  padding:10px 16px; margin-bottom:10px; font-size:14px; font-weight:500;
+  display:flex; gap:10px; align-items:center;
+}
+
+/* ══ CHECKLIST ══ */
+.checklist { list-style:none; padding:0; margin:0; }
+.checklist li {
+  display:flex; align-items:flex-start; gap:10px;
+  padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.1); font-size:14px;
+}
+.checklist li:last-child { border-bottom:none; }
+.checklist .check {
+  width:22px; height:22px; border-radius:50%;
+  background:rgba(255,255,255,0.2); display:flex; align-items:center;
+  justify-content:center; font-size:11px; flex-shrink:0; margin-top:1px;
+}
+
+/* ══ ERRORES COMUNES ══ */
+.errores-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; margin:16px 0; }
+.error-item {
+  background:#fff; border:2px solid var(--borde); border-radius:12px; padding:16px; position:relative;
+}
+.error-item::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--rojo); border-radius:12px 12px 0 0; }
+.error-label { font-size:12px; font-weight:700; color:var(--rojo); margin-bottom:6px; }
+.error-problema { font-size:13px; color:var(--texto); margin-bottom:8px; font-weight:600; }
+.error-sol { font-size:12px; color:var(--texto-dim); line-height:1.5; padding:8px; background:rgba(57,169,0,0.05); border-radius:6px; border-left:3px solid var(--sena-verde); }
+
+/* ══ CIERRE ══ */
+.cierre-box {
+  background:linear-gradient(135deg, #1a1a2e, #0f3460);
+  padding:60px 20px; text-align:center;
+}
+.cierre-inner { max-width:700px; margin:0 auto; }
+.cierre-box h2 { font-family:'Syne',sans-serif; font-size:clamp(28px,5vw,44px); font-weight:800; color:#fff; margin-bottom:16px; }
+.cierre-box p { font-size:16px; color:rgba(255,255,255,0.75); margin-bottom:32px; line-height:1.7; }
+.checklist-final { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:24px; text-align:left; }
+.checklist-final h3 { font-family:'Syne',sans-serif; font-size:18px; font-weight:700; color:#fff; margin-bottom:16px; text-align:center; }
+.cf-item { display:flex; gap:12px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.08); font-size:14px; color:rgba(255,255,255,0.85); align-items:center; }
+.cf-item:last-child { border-bottom:none; }
+.cf-item .chk { color:var(--sena-verde); font-size:16px; flex-shrink:0; }
+
+/* ══ FOOTER ══ */
+footer { background:var(--texto); text-align:center; padding:24px; font-size:12px; color:rgba(255,255,255,0.55); line-height:1.8; }
+footer span { color:#fff; font-weight:700; }
+
+/* ══ REVEAL ══ */
+.reveal { opacity:0; transform:translateY(24px); transition:opacity .5s ease, transform .5s ease; }
+.reveal.in { opacity:1; transform:translateY(0); }
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:640px){
+  .topbar { flex-direction:column; align-items:flex-start; }
+  .topbar-nav { overflow-x:auto; width:100%; }
+  .hero-stats { gap:12px; }
+  .hero-stat { padding:12px 16px; }
+  .accion-box { padding:20px; }
+  .carta-body { padding:18px; margin:12px; }
+  .campos-grid { grid-template-columns:1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<nav class="topbar">
+  <div class="topbar-left">
+    <div class="sena-logo">SENA</div>
+    <div>
+      <div class="topbar-brand">Combinación de Correspondencia · Word 365</div>
+      <div class="topbar-sub">Prevención y Control Ambiental · Ficha 3410069 · Instructor: Julián A. Trujillo M.</div>
+    </div>
+  </div>
+  <div class="topbar-nav">
+    <a href="#que-es">¿Qué es?</a>
+    <a href="#materiales">Materiales</a>
+    <a href="#pasos">Pasos</a>
+    <a href="#errores">Errores</a>
+    <a href="#cierre">Cierre</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">📋 Actividad Práctica · Word 365</div>
+  <h1>Combinación de<br><span>Correspondencia</span></h1>
+  <p class="hero-desc">Aprende a crear notificaciones de visita de inspección ambiental personalizadas para 10 empresas usando una sola plantilla y una tabla de datos en Excel.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="num">10</span><span class="lbl">Empresas</span></div>
+    <div class="hero-stat"><span class="num">7</span><span class="lbl">Campos</span></div>
+    <div class="hero-stat"><span class="num">12</span><span class="lbl">Pasos</span></div>
+    <div class="hero-stat"><span class="num">1</span><span class="lbl">Plantilla</span></div>
+  </div>
+</div>
+
+<!-- ════ SECCIÓN: ¿QUÉ ES? ════ -->
+<div class="container" id="que-es">
+  <div class="reveal">
+    <div class="sec-tag verde">🎯 Conceptos</div>
+    <h2 class="sec-titulo">¿Qué es la Combinación de Correspondencia?</h2>
+    <p class="sec-desc">Es una herramienta de Word que permite generar múltiples documentos personalizados automáticamente, combinando una plantilla con una fuente de datos.</p>
+  </div>
+
+  <div class="step-card reveal" style="margin-top:28px;">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px;">
+      <div>
+        <div style="font-size:48px; margin-bottom:12px;">📄</div>
+        <h4 style="font-family:'Syne',sans-serif; font-size:17px; font-weight:700; color:var(--texto); margin-bottom:8px;">Sin combinación</h4>
+        <p style="font-size:13px; color:var(--texto-dim); line-height:1.6;">Escribes 10 notificaciones manualmente cambiando el nombre de la empresa, NIT, municipio, recurso afectado y funcionario de cada caso. ⏰ Tarda horas.</p>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:center; font-size:36px;">➡️</div>
+      <div>
+        <div style="font-size:48px; margin-bottom:12px;">🚀</div>
+        <h4 style="font-family:'Syne',sans-serif; font-size:17px; font-weight:700; color:var(--sena-verde); margin-bottom:8px;">Con combinación</h4>
+        <p style="font-size:13px; color:var(--texto-dim); line-height:1.6;">Creas UNA plantilla, conectas tu tabla Excel y Word genera las 10 notificaciones automáticamente. ⚡ Tarda minutos.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box success reveal">
+    <p>💡 <strong>Analogía ambiental:</strong> Piensa en un sello de autoridad ambiental. El sello (plantilla) siempre es igual, pero cada empresa tiene datos distintos. Word aplica el sello personalizando los datos de cada empresa automáticamente.</p>
+  </div>
+
+  <div class="step-card reveal">
+    <h3 class="step-titulo">🧩 Los 2 ingredientes clave</h3>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:8px;">
+      <div style="background:rgba(57,169,0,0.05); border:2px solid rgba(57,169,0,0.2); border-radius:12px; padding:18px;">
+        <div style="font-size:32px; margin-bottom:8px;">📄</div>
+        <strong style="font-size:14px; display:block; margin-bottom:6px; color:var(--sena-verde);">Documento principal (Plantilla)</strong>
+        <p style="font-size:13px; color:var(--texto-dim);">La notificación con el texto fijo y los campos dinámicos marcados como <span class="campo">«Nombre_campo»</span></p>
+      </div>
+      <div style="background:rgba(59,130,246,0.05); border:2px solid rgba(59,130,246,0.2); border-radius:12px; padding:18px;">
+        <div style="font-size:32px; margin-bottom:8px;">📊</div>
+        <strong style="font-size:14px; display:block; margin-bottom:6px; color:var(--azul);">Origen de datos (Excel)</strong>
+        <p style="font-size:13px; color:var(--texto-dim);">La tabla con los datos de cada empresa: razón social, NIT, municipio, recurso afectado, etc.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ SECCIÓN: MATERIALES ════ -->
+<div style="background:linear-gradient(135deg, #0f3460, #1a1a2e); padding:48px 20px;" id="materiales">
+  <div style="max-width:1080px; margin:0 auto;">
+
+    <div class="reveal">
+      <div class="sec-tag azul">📦 Materiales de la Actividad</div>
+      <h2 class="sec-titulo" style="color:#fff;">Archivos que vas a usar</h2>
+      <p class="sec-desc" style="color:rgba(255,255,255,0.65);">Descarga los dos archivos antes de comenzar. Guárdalos en una carpeta llamada <strong style="color:#fff;">Inspeccion_Ambiental</strong> en el Escritorio.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; margin-top:28px;">
+
+      <!-- Archivo 1: Excel -->
+      <div class="reveal" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:18px; padding:24px;">
+        <div style="font-size:48px; margin-bottom:12px;">📊</div>
+        <h3 style="font-family:'Syne',sans-serif; font-size:18px; font-weight:700; color:#fff; margin-bottom:8px;">Tabla_Empresas.xlsx</h3>
+        <p style="font-size:13px; color:rgba(255,255,255,0.65); margin-bottom:16px;">Tabla de Excel con los datos de <strong style="color:#fff;">10 empresas</strong> del departamento del Huila a inspeccionar.</p>
+        <div style="background:rgba(255,255,255,0.08); border-radius:8px; padding:10px; font-size:12px; color:rgba(255,255,255,0.7);">
+          📋 7 columnas: Razón social, NIT, Municipio, Recurso afectado, Tipo de actividad, Funcionario inspector, Fecha de visita
+        </div>
+      </div>
+
+      <!-- Archivo 2: Word -->
+      <div class="reveal" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:18px; padding:24px;">
+        <div style="font-size:48px; margin-bottom:12px;">📄</div>
+        <h3 style="font-family:'Syne',sans-serif; font-size:18px; font-weight:700; color:#fff; margin-bottom:8px;">modelo_notificacion.docx</h3>
+        <p style="font-size:13px; color:rgba(255,255,255,0.65); margin-bottom:16px;">Plantilla Word con la <strong style="color:#fff;">notificación de visita de inspección ambiental</strong> y los campos de combinación ya insertados.</p>
+        <div style="background:rgba(255,255,255,0.08); border-radius:8px; padding:10px; font-size:12px; color:rgba(255,255,255,0.7);">
+          🌿 Notificación oficial de la autoridad ambiental con 7 campos dinámicos
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Tabla de destinatarios -->
+    <div class="reveal" style="margin-top:36px;">
+      <h3 style="font-family:'Syne',sans-serif; font-size:20px; font-weight:700; color:#fff; margin-bottom:16px;">🏭 Así se ven tus empresas en Excel</h3>
+      <div class="tabla-wrap">
+        <div class="tabla-header">
+          <span>📊</span>
+          <h3>Tabla_Empresas.xlsx — Hoja1 (10 empresas · Huila)</h3>
+        </div>
+        <div class="tabla-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Razón social</th>
+                <th>NIT</th>
+                <th>Municipio</th>
+                <th>Recurso afectado</th>
+                <th>Tipo de actividad</th>
+                <th>Funcionario inspector</th>
+                <th>Fecha de visita</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Agroindustrias del Huila S.A.S.</strong></td>
+                <td>900.234.567-1</td>
+                <td>Neiva</td>
+                <td>Recurso hídrico</td>
+                <td>Procesamiento agroindustrial</td>
+                <td>Ing. Carlos Medina</td>
+                <td>12/08/2025</td>
+              </tr>
+              <tr>
+                <td><strong>Ganadería La Esperanza Ltda.</strong></td>
+                <td>800.456.789-3</td>
+                <td>Rivera</td>
+                <td>Suelo y agua</td>
+                <td>Explotación pecuaria</td>
+                <td>Téc. Ana Quintero</td>
+                <td>13/08/2025</td>
+              </tr>
+              <tr>
+                <td><strong>Constructora Huila Verde S.A.</strong></td>
+                <td>901.123.456-8</td>
+                <td>Pitalito</td>
+                <td>Aire y suelo</td>
+                <td>Construcción de obras</td>
+                <td>Ing. Luis Vargas</td>
+                <td>14/08/2025</td>
+              </tr>
+              <tr>
+                <td><strong>Cafeteros del Sur S.A.S.</strong></td>
+                <td>890.345.678-2</td>
+                <td>San Agustín</td>
+                <td>Recurso hídrico</td>
+                <td>Beneficio de café</td>
+                <td>Ing. Marcela Torres</td>
+                <td>14/08/2025</td>
+              </tr>
+              <tr>
+                <td><strong>Ladrillera El Progreso</strong></td>
+                <td>700.234.891-5</td>
+                <td>Campoalegre</td>
+                <td>Aire y suelo</td>
+                <td>Extracción de arcilla</td>
+                <td>Ing. Pedro Gómez</td>
+                <td>15/08/2025</td>
+              </tr>
+              <tr>
+                <td><strong>Avícola Los Pinos E.U.</strong></td>
+                <td>830.567.123-4</td>
+                <td>Palermo</td>
+                <td>Suelo y olores</td>
+                <td>Producción avícola</td>
+                <td>Téc. Diana Mora</td>
+                <td>15/08/2025</td>
+              </tr>
+              <tr>
+                <td><strong>Minería Artesanal del Huila</strong></td>
+                <td>860.789.234-7</td>
+                <td>Íquira</td>
+                <td>Recurso minero</td>
+                <td>Extracción de materiales</td>
+                <td>Ing. Felipe Castro</td>
+                <td>16/08/2025</td>
+              </tr>
+              <tr>
+                <td><strong>Piscícola Río Magdalena S.A.</strong></td>
+                <td>910.456.321-9</td>
+                <td>Hobo</td>
+                <td>Recurso hídrico</td>
+                <td>Cultivo de peces</td>
+                <td>Ing. Sofía Díaz</td>
+                <td>16/08/2025</td>
+              </tr>
+              <tr>
+                <td><strong>Servicios Ambientales del Sur</strong></td>
+                <td>880.321.654-6</td>
+                <td>Garzón</td>
+                <td>Residuos sólidos</td>
+                <td>Gestión de residuos</td>
+                <td>Ing. Andrés Ruiz</td>
+                <td>17/08/2025</td>
+              </tr>
+              <tr>
+                <td><strong>Floricultura Valle del Magdalena</strong></td>
+                <td>920.654.987-0</td>
+                <td>Aipe</td>
+                <td>Suelo y agua</td>
+                <td>Cultivo de flores</td>
+                <td>Téc. Natalia Peña</td>
+                <td>17/08/2025</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Plantilla de la notificación -->
+    <div class="reveal" style="margin-top:36px;">
+      <h3 style="font-family:'Syne',sans-serif; font-size:20px; font-weight:700; color:#fff; margin-bottom:8px;">📄 Así se ve la plantilla de notificación</h3>
+      <p style="font-size:14px; color:rgba(255,255,255,0.6); margin-bottom:16px;">Los campos en <span style="background:rgba(139,92,246,0.3); color:#c4b5fd; padding:1px 7px; border-radius:4px; font-family:monospace; font-size:12px;">«morado»</span> se reemplazan automáticamente con los datos de cada empresa.</p>
+      <div class="carta-wrap">
+        <div class="carta-header">
+          <span>🌿</span>
+          <h3>modelo_notificacion.docx — Notificación de Visita de Inspección Ambiental</h3>
+        </div>
+        <div class="carta-body">
+          <div class="carta-titulo">Notificación de Visita de Inspección Ambiental</div>
+
+          <p>Señores:<br>
+          <strong><span class="campo">«Razón social»</span></strong><br>
+          NIT: <span class="campo">«NIT»</span><br>
+          Municipio de <span class="campo">«Municipio»</span></p>
+
+          <p style="margin-top:16px;">Respetados señores:</p>
+
+          <p style="margin-top:12px;">La Corporación Autónoma Regional del Alto Magdalena — CAM, en ejercicio de sus funciones de control y vigilancia ambiental, les informa que se realizará una <strong>visita de inspección ambiental</strong> a las instalaciones de su empresa el día <span class="campo">«Fecha de visita»</span>.</p>
+
+          <p style="margin-top:12px;">La inspección estará a cargo del(la) funcionario(a) <span class="campo">«Funcionario inspector»</span> y se enfocará en la verificación del manejo del recurso <span class="campo">«Recurso afectado»</span>, en el marco de la actividad de <span class="campo">«Tipo de actividad»</span> que desarrolla su empresa.</p>
+
+          <p style="margin-top:12px;">Se solicita garantizar el acceso a las instalaciones y tener disponible la documentación ambiental vigente (permisos, licencias, informes de seguimiento).</p>
+
+          <p style="margin-top:20px;">Atentamente,<br>
+          <strong>Subdirección de Control Ambiental</strong><br>
+          Corporación Autónoma Regional del Alto Magdalena — CAM<br>
+          Neiva, Huila</p>
+        </div>
+
+        <div style="padding:0 20px 20px;">
+          <p style="font-size:13px; font-weight:700; color:var(--texto); margin-bottom:10px;">🔮 Los 7 campos de combinación:</p>
+          <div class="campos-grid">
+            <div class="campo-item">
+              <span class="icon">🏭</span>
+              <div>
+                <span class="name">«Razón social»</span>
+                <span class="desc">Nombre de la empresa</span>
+              </div>
+            </div>
+            <div class="campo-item">
+              <span class="icon">🪪</span>
+              <div>
+                <span class="name">«NIT»</span>
+                <span class="desc">Número de identificación tributaria</span>
+              </div>
+            </div>
+            <div class="campo-item">
+              <span class="icon">📍</span>
+              <div>
+                <span class="name">«Municipio»</span>
+                <span class="desc">Municipio donde opera</span>
+              </div>
+            </div>
+            <div class="campo-item">
+              <span class="icon">📅</span>
+              <div>
+                <span class="name">«Fecha de visita»</span>
+                <span class="desc">Fecha programada para la inspección</span>
+              </div>
+            </div>
+            <div class="campo-item">
+              <span class="icon">👷</span>
+              <div>
+                <span class="name">«Funcionario inspector»</span>
+                <span class="desc">Inspector ambiental asignado</span>
+              </div>
+            </div>
+            <div class="campo-item">
+              <span class="icon">🌊</span>
+              <div>
+                <span class="name">«Recurso afectado»</span>
+                <span class="desc">Recurso natural bajo seguimiento</span>
+              </div>
+            </div>
+            <div class="campo-item">
+              <span class="icon">⚙️</span>
+              <div>
+                <span class="name">«Tipo de actividad»</span>
+                <span class="desc">Actividad productiva de la empresa</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════ SECCIÓN: PASOS ════ -->
+<div class="container" id="pasos">
+  <div class="reveal">
+    <div class="sec-tag naranja">🚀 Guía Paso a Paso</div>
+    <h2 class="sec-titulo">Cómo hacer la combinación</h2>
+    <p class="sec-desc">Sigue estos 12 pasos en orden. No avances al siguiente hasta que el instructor confirme que está correcto.</p>
+  </div>
+
+  <div class="info-box warning reveal">
+    <p>⚠️ <strong>Antes de comenzar:</strong> Cierra completamente el archivo Excel <strong>Tabla_Empresas.xlsx</strong>. Si está abierto, Word no podrá conectarse a él correctamente.</p>
+  </div>
+
+  <!-- PASO 1 -->
+  <div class="step-card reveal">
+    <div class="step-num">PASO 1 · Abrir la plantilla</div>
+    <h3 class="step-titulo">📄 Abrir el archivo modelo_notificacion.docx</h3>
+    <p class="step-desc">Abre el archivo Word que contiene la plantilla de la notificación de inspección ambiental.</p>
+    <ol class="step-list">
+      <li>Ve a la carpeta <strong>Inspeccion_Ambiental</strong> en el Escritorio</li>
+      <li>Haz doble clic en <strong>modelo_notificacion.docx</strong></li>
+      <li>El documento se abrirá en Word con la notificación ya escrita</li>
+      <li>Verifica que puedes leer el contenido completo antes de continuar</li>
+    </ol>
+  </div>
+
+  <!-- PASO 2 -->
+  <div class="step-card reveal">
+    <div class="step-num">PASO 2 · Ir a la pestaña Correspondencia</div>
+    <h3 class="step-titulo">✉️ Activar la pestaña de herramientas</h3>
+    <p class="step-desc">Todas las herramientas de combinación están en la pestaña Correspondencia de la cinta de opciones de Word.</p>
+    <ol class="step-list">
+      <li>En la parte superior de Word, busca las pestañas: Inicio, Insertar, Diseño...</li>
+      <li>Haz clic en la pestaña <strong>Correspondencia</strong></li>
+      <li>Verás un grupo de herramientas como: Sobres, Iniciar combinación, Seleccionar destinatarios...</li>
+    </ol>
+    <div class="info-box success">
+      <p>✅ <strong>¿Lo encontraste?</strong> La pestaña Correspondencia está entre Referencias y Revisar en la cinta de opciones.</p>
+    </div>
+  </div>
+
+  <!-- PASO 3 -->
+  <div class="step-card reveal">
+    <div class="step-num">PASO 3 · Iniciar combinación</div>
+    <h3 class="step-titulo">🎬 Seleccionar tipo de documento: Cartas</h3>
+    <p class="step-desc">Le indicamos a Word que vamos a crear notificaciones personalizadas.</p>
+    <ol class="step-list">
+      <li>En la pestaña Correspondencia, haz clic en <strong>Iniciar combinación de correspondencia</strong></li>
+      <li>Del menú desplegable, selecciona <strong>Cartas</strong></li>
+      <li>El documento no cambia visualmente, pero ya está listo para el siguiente paso</li>
+    </ol>
+    <div class="info-box">
+      <p>💡 <strong>¿Por qué "Cartas"?</strong> Al seleccionar "Cartas", Word entiende que cada registro de tu tabla generará un documento en una página separada.</p>
+    </div>
+  </div>
+
+  <!-- PASO 4 -->
+  <div class="step-card reveal">
+    <div class="step-num">PASO 4 · Conectar con el Excel</div>
+    <h3 class="step-titulo">📊 Seleccionar destinatarios desde el archivo Excel</h3>
+    <p class="step-desc">Conectamos la plantilla Word con la tabla de empresas del archivo Excel.</p>
+    <ol class="step-list">
+      <li>Haz clic en <strong>Seleccionar destinatarios</strong></li>
+      <li>Selecciona <strong>Usar una lista existente...</strong></li>
+      <li>Se abre el explorador de archivos → navega a la carpeta <strong>Inspeccion_Ambiental</strong></li>
+      <li>Selecciona el archivo <strong>Tabla_Empresas.xlsx</strong> y haz clic en <strong>Abrir</strong></li>
+      <li>Aparece una ventana pidiendo seleccionar la hoja → elige <strong>Hoja1$</strong></li>
+      <li>Haz clic en <strong>Aceptar</strong></li>
+    </ol>
+    <div class="info-box warning">
+      <p>⚠️ <strong>Error frecuente:</strong> Si el Excel está abierto, aparecerá un error. Ciérralo y vuelve a intentarlo.</p>
+    </div>
+  </div>
+
+  <!-- PASO 5 -->
+  <div class="step-card reveal">
+    <div class="step-num">PASO 5 · Verificar destinatarios</div>
+    <h3 class="step-titulo">🏭 Editar lista de destinatarios</h3>
+    <p class="step-desc">Revisamos que las 10 empresas estén correctamente cargadas.</p>
+    <ol class="step-list">
+      <li>Haz clic en <strong>Editar lista de destinatarios</strong></li>
+      <li>Se abre una ventana con todos los registros del Excel</li>
+      <li>Verifica que aparezcan las 10 empresas con casillas de verificación ✅ marcadas</li>
+      <li>Comprueba que las columnas tienen los nombres correctos: <code>Razón social</code>, <code>NIT</code>, <code>Municipio</code>...</li>
+      <li>Haz clic en <strong>Aceptar</strong> para cerrar</li>
+    </ol>
+  </div>
+
+  <!-- PASO 6 -->
+  <div class="step-card reveal">
+    <div class="step-num">PASO 6 · Insertar los campos reales</div>
+    <h3 class="step-titulo">🔮 Reemplazar los marcadores con campos de combinación</h3>
+    <p class="step-desc">La notificación tiene 7 marcadores de texto como <code>«Razón social»</code>. Vamos a seleccionar cada uno e inmediatamente reemplazarlo por un campo real usando <strong>Insertar campo combinado</strong>. Word hace el reemplazo automáticamente.</p>
+
+    <!-- Procedimiento visual -->
+    <div style="background:linear-gradient(135deg,rgba(139,92,246,0.08),rgba(139,92,246,0.03)); border:2px solid rgba(139,92,246,0.25); border-radius:14px; padding:20px; margin-bottom:20px;">
+      <p style="font-size:13px; font-weight:800; color:var(--purpura); margin-bottom:14px; letter-spacing:0.5px;">🔁 REPITE ESTE PROCEDIMIENTO PARA LOS 7 CAMPOS:</p>
+      <ul class="pasos-lista" style="margin:0;">
+        <li>
+          <span class="paso-num" style="background:var(--purpura);">1</span>
+          <div class="paso-content">
+            <strong>Selecciona el marcador completo con el mouse</strong>
+            <span>Arrastra el mouse sobre <code>«Razón social»</code> — incluyendo los símbolos « y » — hasta que quede resaltado (puede verse <strong>gris o azul</strong> según la configuración de tu equipo, ambos son correctos).</span>
+          </div>
+        </li>
+        <li>
+          <span class="paso-num" style="background:var(--purpura);">2</span>
+          <div class="paso-content">
+            <strong>Haz clic en la flecha ▼ de "Insertar campo combinado"</strong>
+            <span>En la pestaña <em>Correspondencia</em> → sección <em>Escribir e insertar campos</em> → clic en la <strong>flecha pequeña ▼</strong> junto al botón.</span>
+          </div>
+        </li>
+        <li>
+          <span class="paso-num" style="background:var(--purpura);">3</span>
+          <div class="paso-content">
+            <strong>Selecciona el mismo nombre de la lista</strong>
+            <span>Aparece la lista con todas las columnas de tu Excel. Elige el que tiene el <strong>mismo nombre</strong> que el marcador seleccionado. Ejemplo: seleccionaste <code>«Razón social»</code> → elige <strong>Razón social</strong> de la lista.</span>
+          </div>
+        </li>
+        <li>
+          <span class="paso-num" style="background:var(--purpura);">4</span>
+          <div class="paso-content">
+            <strong>¡El marcador se convierte en campo real!</strong>
+            <span>El texto seleccionado desaparece y aparece <span class="campo">«Razón_social»</span> sombreado en gris — ese sí es un campo real de combinación. ✅</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Tabla de los 7 campos -->
+    <p style="font-size:14px; font-weight:700; color:var(--texto); margin-bottom:12px;">📋 Los 7 campos — selecciona cada uno y reemplázalo:</p>
+    <div class="campos-grid">
+      <div class="campo-item" style="border-left:3px solid var(--purpura);">
+        <span class="icon">1️⃣</span>
+        <div>
+          <span class="name">«Razón social»</span>
+          <span class="desc">Encabezado — nombre de la empresa</span>
+        </div>
+      </div>
+      <div class="campo-item" style="border-left:3px solid var(--purpura);">
+        <span class="icon">2️⃣</span>
+        <div>
+          <span class="name">«NIT»</span>
+          <span class="desc">Encabezado — junto a "NIT:"</span>
+        </div>
+      </div>
+      <div class="campo-item" style="border-left:3px solid var(--purpura);">
+        <span class="icon">3️⃣</span>
+        <div>
+          <span class="name">«Municipio»</span>
+          <span class="desc">Encabezado — junto a "Municipio de"</span>
+        </div>
+      </div>
+      <div class="campo-item" style="border-left:3px solid var(--purpura);">
+        <span class="icon">4️⃣</span>
+        <div>
+          <span class="name">«Fecha de visita»</span>
+          <span class="desc">Cuerpo — fecha de la inspección</span>
+        </div>
+      </div>
+      <div class="campo-item" style="border-left:3px solid var(--purpura);">
+        <span class="icon">5️⃣</span>
+        <div>
+          <span class="name">«Funcionario inspector»</span>
+          <span class="desc">Cuerpo — inspector asignado</span>
+        </div>
+      </div>
+      <div class="campo-item" style="border-left:3px solid var(--purpura);">
+        <span class="icon">6️⃣</span>
+        <div>
+          <span class="name">«Recurso afectado»</span>
+          <span class="desc">Cuerpo — recurso natural a revisar</span>
+        </div>
+      </div>
+      <div class="campo-item" style="border-left:3px solid var(--purpura);">
+        <span class="icon">7️⃣</span>
+        <div>
+          <span class="name">«Tipo de actividad»</span>
+          <span class="desc">Cuerpo — actividad productiva</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box success" style="margin-top:16px;">
+      <p>✅ <strong>¿Cómo sé que quedó bien?</strong> Cada campo reemplazado queda sombreado en gris y si haces clic sobre él, se selecciona todo de un solo golpe — no letra por letra. Al terminar los 7, el botón <strong>"Vista previa de resultados"</strong> mostrará los datos reales de la primera empresa.</p>
+    </div>
+
+    <div class="info-box success" style="margin-top:12px;">
+      <p>🌟 <strong>¡Bonus!</strong> Una vez que insertes los 7 campos, el botón <strong>"Resaltar campos de combinación"</strong> se activa automáticamente. Haz clic en él y verás todos los campos resaltados en <strong>color azul</strong> dentro de la notificación — así puedes confirmar de un vistazo que los 7 están en el lugar correcto.</p>
+    </div>
+
+    <div class="info-box warning" style="margin-top:12px;">
+      <p>⚠️ <strong>¿La lista desplegable está vacía?</strong> El Excel no está conectado aún. Regresa al <strong>Paso 4</strong> y conecta <code>Tabla_Empresas.xlsx</code> primero.</p>
+    </div>
+  </div>
+
+  <!-- PASO 7 -->
+  <div class="step-card reveal">
+    <div class="step-num">PASO 7 · Verificar los 7 campos</div>
+    <h3 class="step-titulo">✅ Confirmar que todos los campos quedaron insertados</h3>
+    <p class="step-desc">Antes de continuar, recorre la notificación visualmente y confirma que los 7 marcadores de texto fueron reemplazados por campos reales sombreados.</p>
+    <ol class="step-list">
+      <li>Desplázate por la notificación de arriba a abajo</li>
+      <li>Verifica que <strong>no quede ningún</strong> <code>«marcador»</code> de texto plano sin reemplazar</li>
+      <li>Todos los campos deben verse sombreados en gris y seleccionarse como un bloque al hacer clic</li>
+      <li>Haz clic en <strong>Vista previa de resultados</strong> — si ves los datos de <em>Agroindustrias del Huila</em>, ¡todo está perfecto! 🎉</li>
+    </ol>
+    <div class="info-box">
+      <p>💡 <strong>¿Se te olvidó algún campo?</strong> No hay problema — coloca el cursor en el lugar correcto y usa de nuevo <strong>Insertar campo combinado ▼</strong> para agregarlo.</p>
+    </div>
+  </div>
+
+  <div class="pausa-box reveal">
+    <span class="icon">⏸️</span>
+    <h3>PAUSA — Verifica con el instructor</h3>
+    <p>Antes de continuar, muéstrale al instructor los 7 campos resaltados en gris en tu notificación.</p>
+  </div>
+
+  <!-- PASO 8 -->
+  <div class="step-card reveal">
+    <div class="step-num">PASO 8 · Vista previa</div>
+    <h3 class="step-titulo">👀 Ver cómo quedará cada notificación</h3>
+    <p class="step-desc">Activamos la vista previa para ver los datos reales de cada empresa en la notificación.</p>
+    <ol class="step-list">
+      <li>Haz clic en <strong>Vista previa de resultados</strong> (en la sección del mismo nombre)</li>
+      <li>Los campos <span class="campo">«»</span> se reemplazan por datos reales: verás <strong>Agroindustrias del Huila S.A.S.</strong></li>
+      <li>Usa los botones de navegación <strong>◀ ▶</strong> para ver cada notificación:</li>
+    </ol>
+    <div style="background:var(--bg); border:1px solid var(--borde); border-radius:10px; padding:14px; margin-top:12px;">
+      <p style="font-size:13px; font-weight:700; color:var(--texto); margin-bottom:10px;">📋 Qué debes verificar en cada notificación:</p>
+      <ul class="pasos-lista">
+        <li>
+          <span class="paso-num">1</span>
+          <div class="paso-content"><strong>Notificación 1: Agroindustrias del Huila S.A.S.</strong><span>Neiva · Recurso hídrico · Ing. Carlos Medina · 12/08/2025</span></div>
+        </li>
+        <li>
+          <span class="paso-num">2</span>
+          <div class="paso-content"><strong>Notificación 2: Ganadería La Esperanza Ltda.</strong><span>Rivera · Suelo y agua · Téc. Ana Quintero · 13/08/2025</span></div>
+        </li>
+        <li>
+          <span class="paso-num">3</span>
+          <div class="paso-content"><strong>Notificación 3: Constructora Huila Verde S.A.</strong><span>Pitalito · Aire y suelo · Ing. Luis Vargas · 14/08/2025</span></div>
+        </li>
+        <li>
+          <span class="paso-num" style="background:var(--texto-dimmer);">…</span>
+          <div class="paso-content"><strong>Notificaciones 4 a 10</strong><span>Revisa cada una con los botones de navegación ◀ ▶</span></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PASO 9 -->
+  <div class="step-card reveal">
+    <div class="step-num">PASO 9 · Comprobar errores</div>
+    <h3 class="step-titulo">🛡️ Verificar que todo está correcto</h3>
+    <p class="step-desc">Word puede detectar errores antes de generar las notificaciones finales.</p>
+    <ol class="step-list">
+      <li>Haz clic en <strong>Comprobación automática de errores</strong> (ícono de palomita ✓)</li>
+      <li>Selecciona: <strong>"Simular la combinación e informar de los errores en un nuevo documento"</strong></li>
+      <li>Haz clic en <strong>Aceptar</strong></li>
+      <li>Si aparece: <em>"No se encontraron errores"</em> → ¡Perfecto! Continúa al paso 10</li>
+      <li>Si hay errores → Anótalos y corrígelos antes de continuar</li>
+    </ol>
+  </div>
+
+  <div class="pausa-box reveal">
+    <span class="icon">✅</span>
+    <h3>PAUSA — ¿Sin errores?</h3>
+    <p>Todos deben ver el mensaje "No se encontraron errores" antes de continuar al paso final.</p>
+  </div>
+
+  <!-- PASO 10 -->
+  <div class="step-card reveal">
+    <div class="step-num">PASO 10 · Finalizar y combinar</div>
+    <h3 class="step-titulo">🎉 Generar las 10 notificaciones personalizadas</h3>
+    <p class="step-desc">¡El momento más emocionante! Generamos el documento final con las 10 notificaciones de inspección.</p>
+    <ol class="step-list">
+      <li>Haz clic en <strong>Finalizar y combinar</strong></li>
+      <li>Selecciona <strong>Editar documentos individuales...</strong></li>
+      <li>En la ventana "Combinar en un documento nuevo" → selecciona <strong>Todos</strong></li>
+      <li>Haz clic en <strong>Aceptar</strong></li>
+      <li>¡Word crea automáticamente un nuevo documento llamado <strong>Cartas1</strong>!</li>
+      <li>Este documento tendrá <strong>10 páginas</strong>, una notificación por cada empresa</li>
+    </ol>
+    <div class="verificacion-box" style="margin-top:16px;">
+      <span class="icon">🎊</span>
+      <h3>¡Resultado esperado!</h3>
+      <div class="verif-item">📄 10 páginas en el documento Cartas1</div>
+      <div class="verif-item">✅ Página 1: Notificación para Agroindustrias del Huila — Neiva</div>
+      <div class="verif-item">✅ Página 2: Notificación para Ganadería La Esperanza — Rivera</div>
+      <div class="verif-item">✅ Páginas 3 a 10: Una notificación para cada empresa restante</div>
+    </div>
+  </div>
+
+  <!-- PASO 11 -->
+  <div class="step-card reveal">
+    <div class="step-num">PASO 11 · Guardar documentos</div>
+    <h3 class="step-titulo">💾 Guardar el resultado y la plantilla</h3>
+    <p class="step-desc">Guarda ambos archivos correctamente para no perder el trabajo.</p>
+    <ul class="pasos-lista">
+      <li>
+        <span class="paso-num">A</span>
+        <div class="paso-content">
+          <strong>Guardar las notificaciones combinadas</strong>
+          <span>En el documento <em>Cartas1</em> → <code>Ctrl + G</code> → Nombre: <code>Notificaciones_Inspeccion_Completas.docx</code></span>
+        </div>
+      </li>
+      <li>
+        <span class="paso-num">B</span>
+        <div class="paso-content">
+          <strong>Guardar la plantilla original</strong>
+          <span>Vuelve a <em>modelo_notificacion.docx</em> → <code>Ctrl + G</code> → Guarda con el mismo nombre para reutilizarla</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- PASO 12 -->
+  <div class="step-card reveal">
+    <div class="step-num">PASO 12 · Revisión final</div>
+    <h3 class="step-titulo">🔍 Verificar las notificaciones generadas</h3>
+    <p class="step-desc">Desplázate por el documento y revisa que cada notificación tenga los datos correctos.</p>
+    <ol class="step-list">
+      <li>Abre <strong>Notificaciones_Inspeccion_Completas.docx</strong></li>
+      <li>Revisa página por página: verifica razón social, NIT, municipio, recurso afectado y funcionario inspector</li>
+      <li>Compara con la tabla Excel para confirmar que los datos coinciden</li>
+      <li>Si todo está correcto, ¡felicitaciones! Completaste la actividad 🎉</li>
+    </ol>
+  </div>
+
+</div>
+
+<!-- ════ SECCIÓN: ERRORES COMUNES ════ -->
+<div style="background:#fff; border-top:2px solid var(--borde); padding:48px 20px;" id="errores">
+  <div style="max-width:1080px; margin:0 auto;">
+    <div class="reveal">
+      <div class="sec-tag purpura">⚠️ Solución de Problemas</div>
+      <h2 class="sec-titulo">Errores comunes y cómo solucionarlos</h2>
+      <p class="sec-desc">Si algo no funciona, revisa esta guía antes de llamar al instructor.</p>
+    </div>
+    <div class="errores-grid reveal" style="margin-top:24px;">
+      <div class="error-item">
+        <div class="error-label">❌ Error frecuente</div>
+        <div class="error-problema">El Excel está abierto</div>
+        <div class="error-sol">✅ Cierra completamente Excel y vuelve a conectar el archivo desde Word.</div>
+      </div>
+      <div class="error-item">
+        <div class="error-label">❌ Error frecuente</div>
+        <div class="error-problema">Campo vacío en la notificación</div>
+        <div class="error-sol">✅ Revisa el Excel: alguna celda está vacía en esa columna para esa empresa.</div>
+      </div>
+      <div class="error-item">
+        <div class="error-label">❌ Error frecuente</div>
+        <div class="error-problema">Campo no encontrado</div>
+        <div class="error-sol">✅ El nombre del campo en Word no coincide exactamente con el encabezado del Excel. Usa "Asignar campos".</div>
+      </div>
+      <div class="error-item">
+        <div class="error-label">❌ Error frecuente</div>
+        <div class="error-problema">La fecha aparece como número</div>
+        <div class="error-sol">✅ En Excel, formatea la columna "Fecha de visita" como Texto (no como Fecha) antes de conectar.</div>
+      </div>
+      <div class="error-item">
+        <div class="error-label">❌ Error frecuente</div>
+        <div class="error-problema">Solo aparecen algunas empresas</div>
+        <div class="error-sol">✅ En "Editar lista de destinatarios", verifica que todos los registros tengan ✅ marcado.</div>
+      </div>
+      <div class="error-item">
+        <div class="error-label">❌ Error frecuente</div>
+        <div class="error-problema">No aparece la pestaña Correspondencia</div>
+        <div class="error-sol">✅ Ve a Archivo → Opciones → Personalizar cinta de opciones → activa "Correspondencia".</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ CIERRE ════ -->
+<div class="cierre-box" id="cierre">
+  <div class="cierre-inner reveal">
+    <div style="font-size:72px; margin-bottom:20px;">🌿</div>
+    <h2>¡Actividad completada!</h2>
+    <p>Generaste 10 notificaciones de inspección ambiental personalizadas automáticamente usando la Combinación de Correspondencia de Word 365.</p>
+
+    <div class="checklist-final">
+      <h3>✅ Lista de verificación final</h3>
+      <div class="cf-item"><span class="chk">✅</span> Abrí el archivo modelo_notificacion.docx</div>
+      <div class="cf-item"><span class="chk">✅</span> Conecté el Excel Tabla_Empresas.xlsx como origen de datos</div>
+      <div class="cf-item"><span class="chk">✅</span> Verifiqué las 10 empresas en la lista de destinatarios</div>
+      <div class="cf-item"><span class="chk">✅</span> Confirmé los 7 campos de combinación resaltados</div>
+      <div class="cf-item"><span class="chk">✅</span> Revisé la vista previa de todas las notificaciones</div>
+      <div class="cf-item"><span class="chk">✅</span> Comprobé que no hay errores</div>
+      <div class="cf-item"><span class="chk">✅</span> Generé el documento con las 10 notificaciones (Cartas1)</div>
+      <div class="cf-item"><span class="chk">✅</span> Guardé los dos archivos correctamente</div>
+    </div>
+
+    <div style="margin-top:28px; background:rgba(57,169,0,0.1); border:1px solid rgba(57,169,0,0.2); border-radius:14px; padding:20px;">
+      <p style="font-size:15px; color:rgba(255,255,255,0.9); font-weight:600;">📝 Ahora inténtalo con ejercicios adicionales:</p>
+      <p style="font-size:13px; color:rgba(255,255,255,0.65); margin-top:8px; line-height:1.7;">
+        🏷️ Ejercicio 2: Genera etiquetas con el nombre, NIT y municipio de cada empresa<br>
+        📊 Ejercicio 3: Filtra solo las empresas con visita el 17/08/2025<br>
+        ✍️ Ejercicio 4: Agrega un campo nuevo "Número de expediente" a la tabla y actualiza la notificación
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>Actividad Práctica · <span>Combinación de Correspondencia – Word 365</span></p>
+  <p>Prevención y Control Ambiental · Ficha <span>3410069</span> · Centro Agroempresarial y Desarrollo Pecuario del Huila · <span>SENA</span></p>
+  <p>Instructor: <span>Julián Andrés Trujillo Morales</span></p>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) t.scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+  });
+</script>
+</body>
+</html>
